@@ -54,6 +54,29 @@ Modules, how to run them:
   second: 29, req/sq: 23, average: 107 - 7 (15.285714285714286)
   ```
 
+  - when batch data is sent?
+
+  ```ttl raised? : 3503 3500  or limit?:  71 1000```
+
+  Meaning: Time to live raised 3.5>3 secs
+           Limit of rows not raised 71 current rows < 1000
+
+  Receiving on redis:
+
+  ```
+  1424254201.026403 [0 127.0.0.1:51383] "MULTI"
+  1424254201.026463 [0 127.0.0.1:51383] "lpush" "channel2" "..."
+  1424254201.026480 [0 127.0.0.1:51383] "lpush" "channel2" "..."
+  1424254201.026496 [0 127.0.0.1:51383] "lpush" "channel1" "..."
+  1424254201.026513 [0 127.0.0.1:51383] "lpush" "channel2" "..."
+  1424254201.026529 [0 127.0.0.1:51383] "lpush" "channel2" "..."
+  1424254201.026546 [0 127.0.0.1:51383] "lpush" "channel2" "..."
+  1424254201.026562 [0 127.0.0.1:51383] "lpush" "channel1" "..."
+  1424254201.026579 [0 127.0.0.1:51383] "lpush" "channel1" "..."
+  1424254201.026708 [0 127.0.0.1:51383] "EXEC"
+  1424254202.758485 [0 127.0.0.1:51386] "publish" "channel1" "ready"
+  ```
+
   - Collector standalone (test version)
 
   0) [testing purpose] Random rows will be injected on redis source.
