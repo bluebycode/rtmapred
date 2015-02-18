@@ -1,0 +1,18 @@
+{
+  "name": "mapred",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+     "redis": "0.12.1",
+     "q": "*",
+     "underscore": "*",
+     "synchronize": "*",
+     "stream-cluster": "/Users/vrandkode/dev/node.js/examples/streaming/5-streaming-cluster-nodes/"
+  }
+}
