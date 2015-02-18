@@ -1,4 +1,4 @@
-# steps
+# MapRed: collector - mapper - reducer model
 
 Requirements:
 
@@ -30,8 +30,28 @@ Modules, how to run them:
 
   - Client simulator
 
+  Run the events' simulation which will generate random event, wrapping few of them on a batch
+
+  ( LPUSH(ch) x m ) + PUB(ch) where m: event's batch size, ch: events' channel
+
+  ```
+  $ src> node client.js standalone <events-per-seconds>
   ```
 
+  i.e
+
+  ```
+  $ node client.js standalone 20
+
+  second: 0, req/sq: 0, average: 0 - 1 (0)
+  second: 24, req/sq: 9, average: 9 - 2 (4.5)
+  second: 25, req/sq: 18, average: 27 - 3 (9)
+  second: 26, req/sq: 16, average: 43 - 4 (10.75)
+  second: 27, req/sq: 24, average: 67 - 5 (13.4)
+  ttl raised? : 3503 3500  or limit?:  71 1000
+  release with 71
+  second: 28, req/sq: 17, average: 84 - 6 (14)
+  second: 29, req/sq: 23, average: 107 - 7 (15.285714285714286)
   ```
 
   - Collector standalone (test version)

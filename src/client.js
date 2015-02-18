@@ -128,8 +128,7 @@ var mod = exports;
 if (process.argv[2] === 'standalone') {
 
   var conn = new datasource.Pool('localhost', 6379, 5);
-  var client = new mod.Client(conn, 20);
+  var client = new mod.Client(conn, process.argv[3]);
   client.start();
-
 }
 
