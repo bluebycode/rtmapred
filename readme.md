@@ -56,7 +56,7 @@ Modules, how to run them:
 
   - when batch data is sent?
 
-  ```ttl raised? : 3503 3500  or limit?:  71 1000```
+  ```ttl raised? : 3503 3500  or limit?:  71 1000``
 
   Meaning: Time to live raised 3.5>3 secs
            Limit of rows not raised 71 current rows < 1000
