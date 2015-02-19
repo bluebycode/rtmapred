@@ -5,7 +5,7 @@ Requirements:
   - Redis
 
   ```
-    $ nohup ./redis-server 2>&1 > redis.log &
+    $ nohup ./redis-server redis.conf 2>&1 > redis.log &
     $ tail -f redis.log
 
    |    `-._`-._        _.-'_.-'    |           http://redis.io
@@ -53,6 +53,15 @@ Modules, how to run them:
   second: 28, req/sq: 17, average: 84 - 6 (14)
   second: 29, req/sq: 23, average: 107 - 7 (15.285714285714286)
   ```
+  * Embedded console
+
+    | command     | description                  |
+    | ------------|------------------------------|
+    | start       | starts the node              |
+    | rps <n>     | change phrequency of events  |
+    | ------------|------------------------------|
+
+  * Questions:
 
   - when batch data is sent?
 
@@ -60,6 +69,7 @@ Modules, how to run them:
 
   Meaning: Time to live raised 3.5>3 secs
            Limit of rows not raised 71 current rows < 1000
+
 
   Receiving on redis:
 
