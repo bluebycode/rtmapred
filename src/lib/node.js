@@ -1,14 +1,13 @@
 /*jslint node: true */
 
+var _        = require('underscore');
 var util     = require('util');
 var events   = require('events');
 var es       = require('event-stream');
-var _        = require('underscore');
 var trace    = require('./trace.js')();
 var stream   = require('stream');
 var through2 = require('through2');
-
-var net = require('net');
+var net      = require('net');
 
 var mod = exports;
 (function(container){
@@ -24,6 +23,7 @@ var mod = exports;
       stdin: false,
       debug: true
     }, options);
+
 
     this._getCommand = function(rawcommand){
       var cmd = rawcommand.toString().split('\n')[0].split(' ');
@@ -41,8 +41,9 @@ var mod = exports;
         return trace('Command not found: ', command);
       }
       try {
-        self._commands[command].call(self._context, params);
+        self._commands[command].call(self, params);
       } catch (err){
+        console.log('true!!',err.stack);
         return false;
       }
       return true;
@@ -83,6 +84,7 @@ var mod = exports;
   };
 
   container.Node = function Node(id, name, options){
+    var self = this;
     events.EventEmitter.call(this);
     this._id = id;
     this._name = name;
