@@ -26,16 +26,42 @@ Requirements:
   OK
   ```
 
+Running all nodes of system on standalone mode (/src)
+
+```
+$ node feeder.js standalone 3
+$ start
+$ rps 100
+```
+
+```
+$ node picker.js standalone
+$ start
+```
+
+```
+tail -f src/logs/*.log
+
+==> logs/stream2.log <==
+{"k":"1424941025976,ch2","v":"user=34272|token=b7a2307c78e24105577aae20646ced2fadd22e4d9c739fc07c8f99806d2244890185824ed2020b29f803ab250c50a5aac51242b6bf208437109f0534abfe11b9"}
+{"k":"1424941026002,ch2","v":"user=82423|token=63455469e005f8d928f206518c6ca811dc9d166b00d529d9fad0f01d4b3761e47e3cd1d60365a749207101e3a0b16d3d24074454faf9da627ecfceb47cbbca2d"}
+{"k":"1424941025842,ch1","v":"user=56609|token=6eccb901a30816c5503710c93ed419936fb4e4f460f80325e61a34574501af231f63432d20be16e24259096b644c5d316437e1dd8b35eb385253e4ffc84527d3"}
+...
+```
+
+
+
 Modules, how to run them:
 
-  - Client simulator
+
+  - Generator of random events (feeder)
 
   Run the events' simulation which will generate random event, wrapping few of them on a batch
 
   ( LPUSH(ch) x m ) + PUB(ch) where m: event's batch size, ch: events' channel
 
   ```
-  $ src> node client.js standalone <events-per-seconds>
+  $ src> node feeder.js standalone <events-per-seconds>
   ```
 
   i.e
@@ -106,13 +132,22 @@ Modules, how to run them:
   ```
 
   ```
-  node collector.js standalone
+  node picker.js standalone
 
-  Wed, 18 Feb 2015 09:35:10 GMT [collector] setting channels: [ 'channel1', 'channel2' ]
-  Wed, 18 Feb 2015 09:35:10 GMT [collector] setting outputs streams: [ 'output0.log', 'output1.log', 'output2.log', 'output3.log' ]
-  Wed, 18 Feb 2015 09:35:10 GMT [collector] listening 9999
-  channel1 test0
-  channel1 test1
+
+  $ [Thu, 26 Feb 2015 09:18:59 GMT]  Received message on #ch1
+  [Thu, 26 Feb 2015 09:18:59 GMT]  channel ch1 received event!
+  [Thu, 26 Feb 2015 09:18:59 GMT]  arrange: ch1 4
+  [Thu, 26 Feb 2015 09:18:59 GMT]  Received message on #ch2
+  [Thu, 26 Feb 2015 09:18:59 GMT]  channel ch2 received event!
+  [Thu, 26 Feb 2015 09:18:59 GMT]  arrange: ch2 4
+  [Thu, 26 Feb 2015 09:18:59 GMT]  [ ch1 ] received 11072 rows.
+  [Thu, 26 Feb 2015 09:19:00 GMT]  [ ch2 ] received 11288 rows.
+  [Thu, 26 Feb 2015 09:19:00 GMT]  index: 0 length: 2768
+  [Thu, 26 Feb 2015 09:19:00 GMT]  index: 3 length: 2768
+  [Thu, 26 Feb 2015 09:19:00 GMT]  index: 2 length: 2822
+  [Thu, 26 Feb 2015 09:19:00 GMT]  index: 3 length: 2822
+  [Thu, 26 Feb 2015 09:19:00 GMT]  index: 1 length: 2768
 
   ```
 
@@ -120,7 +155,7 @@ Modules, how to run them:
 
   ```
   1424252110.319491 [0 127.0.0.1:50827] "MULTI"
-  1424252110.320662 [0 127.0.0.1:50827] "lpush" "channel1" "test0"
+  1424252110.320662 [0 127.0.0.1:50827] "lpush" "ch1" "test0"
   ...
   1424252110.321084 [0 127.0.0.1:50827] "EXEC"
   ```
