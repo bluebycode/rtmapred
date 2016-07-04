@@ -1,4 +1,4 @@
-# MapRed: collector - mapper - reducer model
+# MapRed: collector phase
 
 Requirements:
 
@@ -161,5 +161,6 @@ Modules, how to run them:
   ```
 
 
-  - Mappers (placeholders)
+  - Mappers -- in progress
+  - Reducers -- in progress
 
